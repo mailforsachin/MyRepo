@@ -1,0 +1,7 @@
+for d in dmd.Devices.getSubDevices():
+	org = d.getOrganizerName()
+	for template in d.getAllRRDTemplates():
+		for ds in template.getRRDDataSources():
+			print '%s,%s,%s,%s,%s,%s,%s' % (d.id,org,template.id,ds.id,ds.enabled,ds.severity,ds.eventClass)
+		for tholds in template.thresholds():
+			print '%s,%s,%s,%s,%s,%s,%s' % (d.id,org,template.id,tholds.id,tholds.enabled,tholds.severity,tholds.eventClass)
