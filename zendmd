@@ -1,5 +1,5 @@
 print 'DatasourceType,Template,TemplateType,DataSourceID,ThresholdID,ThresholdMax,ThresholdMin,ThresholdDesc,DataSourceName'
-for template in dmd.Devices.getAllRRDTemplates():
+for template in dmd.getAllRRDTemplates():
     for datasource in template.datasources():
         dspath = datasource.getPrimaryId().split('/rrdTemplates')[0].replace('/zport/dmd','')
         tid = template.id
