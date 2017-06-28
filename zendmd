@@ -1,4 +1,3 @@
-print 'Device Class, Template ID, Datasource ID, Type, Datapoint ID'
 for template in dmd.Devices.getAllRRDTemplates():
     for datasource in template.datasources():
         dspath = datasource.getPrimaryId().split('/rrdTemplates')[0].replace('/zport/dmd','')
@@ -26,4 +25,4 @@ for template in dmd.Devices.getAllRRDTemplates():
             dsnames = '|'.join(threshold.dsnames)
         except:
             dsnames = None
-        print '%s,%s,%s,%s,%s,%s,%s' % (tpath, tid, t2id, tmax, tmin, tdesc, dsnames)
+        print '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s' % (dstype,tpath, tid, dsid, dpid, t2id, tmax, tmin, tdesc, dsnames)
