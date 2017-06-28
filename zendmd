@@ -1,0 +1,29 @@
+print 'Device Class, Template ID, Datasource ID, Type, Datapoint ID'
+for template in dmd.Devices.getAllRRDTemplates():
+    for datasource in template.datasources():
+        dspath = datasource.getPrimaryId().split('/rrdTemplates')[0].replace('/zport/dmd','')
+        tid = template.id
+        dsid = datasource.id
+        dstype = datasource.__class__.__name__
+        for dp in datasource.datapoints():
+            dpid = dp.id
+    for threshold in template.thresholds():
+        tpath = threshold.getPrimaryId().split('/rrdTemplates')[0].replace('/zport/dmd','')
+        t2id = threshold.id
+        try:
+            tmax = threshold.maxval
+        except:
+            tmax = None
+        try:
+            tmin = threshold.minval
+        except:
+            tmin = None
+        try:
+            tdesc = threshold.description
+        except:
+            tdesc = None
+        try:
+            dsnames = '|'.join(threshold.dsnames)
+        except:
+            dsnames = None
+        print '%s,%s,%s,%s,%s,%s,%s' % (tpath, tid, t2id, tmax, tmin, tdesc, dsnames)
